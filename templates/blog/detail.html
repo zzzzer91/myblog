@@ -1,0 +1,110 @@
+{% extends 'blog/base.html' %}
+
+{% block main %}
+  <div class="jumbotron" style="background-image: url({{ post.img.url }})">
+    <center>
+      <div class="container">
+        <h2 id="header-title">{{ post.title }}</h2>
+        <p id="header-main">
+          {{ post.category.name }}&nbsp;&nbsp;&nbsp;{{ post.created_time|date:"Y-m-d H:i" }}&nbsp;&nbsp;&nbsp;
+        </p>
+        <p id="header-main">
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;<span>{{ post.views }}</span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;<span class="comment-count">{{ post.comment_set.count }}</span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>&nbsp;<span class="post-likes">{{ post.likes }}</span>
+        </p>
+        <div>
+          {% for tag in post.tags.all %}
+          <span class="tag-item">{{ tag }}</span>
+          {% empty %}
+          &nbsp;
+          {% endfor %}
+        </div>
+      </div>
+    </center>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <article class="main-content">
+        {{ post.body|safe }}
+        </article>
+        <center style="margin-top:80px;">
+          <button class="btn btn-danger" id="like" name="{{ post.pk }}">喜欢(<span class="post-likes">{{ post.likes }}</span>)</button>
+        </center>
+        <p class="modified-time">
+          编辑于: {{ post.modified_time|date:"Y-m-d H:i" }}
+        </p>
+        <hr style="margin-top:0;">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        {% csrf_token %}
+        <div class="row" style="margin-bottom:5px;">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+              <input class="form-control user-name" type="text" maxlength="8" name="name" placeholder="昵称*">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+              <input class="form-control user-email" type="text" maxlength="40" name="email" placeholder="邮箱(不公开)">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-cloud"></span></span>
+              <input class="form-control user-url" type="text" maxlength="40" name="url" placeholder="网站(不公开)">
+            </div>
+          </div>
+        </div>
+        <textarea class="comment-area" maxlength="150" name="text" placeholder="150字以内"></textarea>
+        <p class="captcha-group">
+          <img class="captcha">
+          <input class="code" type="text" maxlength="4" name="code" placeholder="  验证码">
+          <button class="btn btn-primary comment-btn" type="submit">发表</button>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h3 style="margin-bottom:50px">评论列表(共<span class="comment-count">{{ post.comment_set.count }}</span>条评论)</h3>
+        <div class="comment-list">
+          {% for comment in comment_list %}
+          <div>
+            <strong class="comment-name ">{{ comment.name }}</strong>
+            <span class="comment-created">{{ comment.created_time|date:"Y-m-d H:i" }}</span>
+            <p class="comment-text">
+              {{ comment.text }}
+            </p>
+            <!-- <div class="wrap-reply"><a href="javascript:;" class="comment-reply">回复</a></div> -->
+          </div>
+          <hr class="comment-line">
+          {% empty %}
+            <span id="no-comment">暂无评论</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!--<div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="clearfix">
+          {% if comment_list.number and comment_list.paginator.num_pages %}
+          第 {{ comment_list.number }} 页 / 共 {{ comment_list.paginator.num_pages }} 页
+          {% endif %}
+          {% if comment_list.has_next %}
+          <a class="page-turning" href="javascript:;">&nbsp;下一页&rarr;&nbsp;</a>
+          {% endif %}
+          {% if comment_list.has_previous %}
+          <a class="page-turning" href="javascript:;">&nbsp;&larr;上一页&nbsp;</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>-->
+  </div>
+{% endblock main %}

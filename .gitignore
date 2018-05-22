@@ -1,0 +1,8 @@
+.vscode/
+.idea/
+/static/
+/media/imgs/upload/
+build/
+__pycache__/
+migrations/
+*.sqlite3

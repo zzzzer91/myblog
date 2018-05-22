@@ -1,0 +1,73 @@
+{% load staticfiles %}
+{% load blog_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>zzzzer's blog</title>
+  <link rel="shortcut icon" href="{% static 'blog/img/favicon.ico' %}">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'blog/css/monokai.css' %}">
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" style="color: #fff;" href="{% url 'blog:index' %}">ZZZZER</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="{% url 'blog:index' %}">主页</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              {% get_categories as category_list %}
+              {% for category in category_list %}
+              <li><a href="{% url 'blog:category' category.pk %}">{{ category.name }} ({{ category.num }})</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li><a href="{% url 'blog:archives' %}">归档</a></li>
+          <li><a href="{% url 'blog:about' %}">关于</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" method="get" action="{% url 'blog:search' %}">
+          <div class="input-group">
+            <input class="form-control" type="text" name="q" placeholder="搜索" required>
+            <span class="input-group-btn">
+              <button class="btn btn-warning" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  {% block main %}
+  {% endblock main %}
+
+  <a href="javascript:;" class="go-top"><span class="glyphicon glyphicon-chevron-up"></span></a>
+
+  <footer class="my-footer">
+    <p class="copyright">
+      Powered by <a href="https://www.djangoproject.com/" target="_blank">Django</a>,  
+      Designed by <a href="{% url 'blog:about' %}" target="_blank">zzzzer</a>
+      <br>
+      Copyright &copy; 2017 <a href="{% url 'blog:index' %}" target="_blank">zzzzer.com</a>
+      <br>
+      苏ICP备17031402号-1
+    </p>
+  </footer>
+
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="{% static 'blog/js/mysite.js' %}"></script>
+</body>
+</html>

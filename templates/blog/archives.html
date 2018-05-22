@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}s
+{% block main %}
+  <div class="jumbotron" style="background-image: url({% static 'blog/img/archives.jpg' %})">
+    <center>
+      <div class="container">
+        <h1 id="header-title">归档</h1>
+        <p id="header-main">{{ how_long }}</p>
+      </div>
+    </center>
+  </div>
+
+  <article class="main-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          {% for date, post_list in archives %}
+          <h4>
+            {{ date.year }} 年 {{ date.month }} 月
+          </h4>
+          <ul>
+            {% for post in post_list %}
+            <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+            {% endfor %}
+          </ul>
+          <br>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </article>
+{% endblock main %}

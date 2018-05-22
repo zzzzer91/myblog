@@ -1,0 +1,57 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block main %}
+  <div class="jumbotron" style="background-image: url({% static 'blog/img/index.jpg' %})">
+    <center>
+      <div class="container">
+        <h2 id="header-title">Hi</h2>
+        <p id="header-main">欢迎来到ZZZZER的博客</p>
+      </div>
+    </center>
+  </div>
+
+  <div class="container"> 
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        {% for post in post_list %}
+        <center>
+          <div class="post-preview">
+            <h2 class="post-title">
+              <a href="{{ post.get_absolute_url }}">
+                {{ post.title }}
+              </a>
+            </h2>
+            <h3 class="post-subtitle">
+              {{ post.excerpt }}
+            </h3>
+            <p class="post-meta">
+              <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a>&nbsp;&nbsp;&nbsp;{{ post.created_time|date:"Y-m-d H:i" }}&nbsp;&nbsp;&nbsp;
+            </p>
+            <p class="post-meta">
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;{{ post.views }}&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;{{ post.comment_set.count }}&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>&nbsp;{{ post.likes }}
+            </p>
+          </div>
+        </center>
+        <hr>
+        {% empty %}
+        <center><h1>没有相关内容！</h1></center>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="clearfix">
+          {% if post_list.number and post_list.paginator.num_pages %}
+          第 {{ post_list.number }} 页 / 共 {{ post_list.paginator.num_pages }} 页
+          {% endif %}
+          {% if post_list.has_next %}
+          <a class="page-turning" href="?page={{ post_list.next_page_number }}">&nbsp;下一页&rarr;&nbsp;</a>
+          {% endif %}
+          {% if post_list.has_previous %}
+          <a class="page-turning" href="?page={{ post_list.previous_page_number }}">&nbsp;&larr;上一页&nbsp;</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock main %}

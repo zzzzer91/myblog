@@ -1,0 +1,183 @@
+/*The css for zzzzer's blog.*/
+
+body {
+    background-color: #EEE;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 800;
+}
+
+hr {
+    border-top: 1px solid #ccc;
+    margin-bottom: 30px;
+    padding: 10px 0 10px 0;
+}
+
+/*导航栏*/
+.navbar {
+    margin-bottom: 0px;
+}
+
+/*巨幕*/
+.jumbotron {
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.jumbotron .container {
+    margin: 125px 0 125px 0;
+    padding: 0;
+}
+
+
+/*回到顶部*/
+.go-top {
+    position: fixed;
+    right: 16px;
+    bottom: 30px;
+    display: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #ccc;
+    opacity: 0.7;
+}
+
+/*文章首页索引*/
+.post-preview a {
+    color: #333333; 
+}
+.post-title > a:hover, .post-title > a:focus {
+    text-decoration: none;
+    color: #0085A1; 
+}
+.post-preview .post-title {
+    font-size: 36px;
+    margin: 20px 0 10px 0;
+}
+.post-preview .post-subtitle {
+    font-weight: 300;
+    margin: 0 0 10px 0; 
+}
+.post-preview .post-meta{
+  color: #777777;
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 0; 
+}
+
+/*上一页，下一页按钮*/
+.page-turning {
+    float: right;
+    color: black;
+    margin-bottom: 30px;
+}
+
+/*文章详情页标题*/
+#header-title {
+    color: white; 
+    font-size: 40px;
+    margin: 20px 0 20px 0;
+    padding: 0 10px 0 10px;
+}
+#header-main {
+    color: white;
+    font-size: 25px;
+    padding: 0 10px 0 10px;
+}
+
+/*文章标签*/
+.tag-item {
+    padding: 0 15px;
+    color: #fff;
+    background-color: #ec971f;
+    border-color: #eea236;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/*文章内容*/
+.main-content {
+    font-size: 20px;
+}
+.main-content p {
+    margin-top: 30px;
+}
+.main-content h1, h2, h3, h4, h5, h6 {
+    margin-top: 30px;
+}
+
+/*markdown code和a标签换行*/
+.main-content code, .main-content a {
+    /*word-break:break-all;会把单词截断换行*/
+    /*word-break似乎不支持我的手机浏览器*/
+    /*word-wrap:break-word;会尝试保持一行中单词完整*/
+    word-wrap: break-word;  
+}
+
+/*文章修改时间*/
+.modified-time {
+    color: #636c72;
+    font-size: 14px;
+    margin-top: 30px;
+    text-align: right;
+}
+
+/*发表评论*/
+.comment-area {
+    /*评论内容输入框*/
+    height: 80px;
+    width: 100%;
+    resize: none;
+}
+.comment-btn {
+    /*评论按钮*/
+    margin-top: 0px;
+
+}
+
+/*验证码*/
+.captcha-group {
+    text-align: right;
+}
+.code {
+    width: 62px;
+    height: 34px;    
+}
+
+/*评论列表*/
+.comment-name {
+    color: #0c81b8;
+}
+.comment-created {
+    color: #636c72;
+    float:right;
+}
+.comment-text {
+    /*评论内容*/
+    margin-top: 20px;
+    font-size: 20px;
+    word-wrap: break-word;
+}
+.wrap-reply {
+    text-align: right;
+}
+.comment-line {
+    margin:10px 0 10px 0;
+}
+
+/*footer*/
+.my-footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 100px;
+    text-align: center;
+    background-color: #232323;
+}
+.copyright {
+    color: #636c72;
+    font-size: 14px;
+}
+.copyright a {
+    color: #fff;
+}

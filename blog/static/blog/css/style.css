@@ -168,8 +168,8 @@ hr {
 
 /*footer*/
 .my-footer {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     margin-top: 100px;
     text-align: center;
     background-color: #232323;
@@ -178,6 +178,6 @@ hr {
     color: #636c72;
     font-size: 14px;
 }
-.copyright a {
+.white-url {
     color: #fff;
 }

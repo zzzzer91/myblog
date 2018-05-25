@@ -26,7 +26,7 @@ SECRET_KEY = 'n&ab_i2iwiop@3f_9456#6bj@f5eg=fk7nn5+b9e*$jx_g#*)7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.zzzzer.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition

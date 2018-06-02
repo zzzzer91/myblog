@@ -13,7 +13,7 @@ from common.captcha import build_captcha
 def captcha(request):
     """验证码生成."""
 
-    code, raw = get_captcha()
+    code, raw = build_captcha()
     request.session["code"] = code
     return HttpResponse(raw)
 
